@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGE=docker.pkg.github.com/arrase/devenv/devenv
+IMAGE=docker.pkg.github.com/multirepo-manager/backend/devenv
 TAG=develop
 
 if [ $# -lt 1 ]
