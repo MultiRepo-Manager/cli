@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGE=docker.pkg.github.com/multirepo-manager/backend/manager
+IMAGE=docker.pkg.github.com/multirepo-manager/docker/manager
 TAG=develop
 
 if [ $# -lt 1 ]
