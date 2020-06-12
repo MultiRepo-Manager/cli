@@ -21,8 +21,8 @@ import (
 	"github.com/spf13/cobra"
 	"os"
 
-	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
+  "log"
 )
 
 var cfgFile string
@@ -77,6 +77,6 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	} else {
-    log.Fatal("")
+    log.Fatal("Config not found")
   }
 }
