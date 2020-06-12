@@ -1,4 +1,4 @@
-package openurl
+package helpers
 
 import (
 	"log"
