@@ -16,7 +16,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 package main
 
-import "github.com/arrase/multi-repo-workspace/cli"
+import "github.com/arrase/multi-repo-workspace/cli/cmd"
 
 func main() {
 	cmd.Execute()
