@@ -49,7 +49,6 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	} else {
-		fmt.Println("Config file not found, run workspace init -h")
-    os.Exit(0)
+		fmt.Println("Config file not found")
 	}
 }
