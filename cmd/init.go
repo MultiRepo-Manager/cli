@@ -18,20 +18,22 @@ package cmd
 
 import (
 	"fmt"
+  "errors"
 
 	"github.com/spf13/cobra"
 )
 
-// initCmd represents the init command
-var initCmd = &cobra.Command{
-	Use:   "init",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+var useTemplate bool
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+var initCmd = &cobra.Command{
+	Use:   "init [url]",
+	Short: "Init a workspace",
+	Args: func(cmd *cobra.Command, args []string) error {
+		if len(args) < 1 && !useTemplate{
+			return errors.New("requires a git repo or set the --template flag to start from scratch")
+		}
+    return nil
+	},
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("init called")
 	},
@@ -39,14 +41,5 @@ to quickly create a Cobra application.`,
 
 func init() {
 	rootCmd.AddCommand(initCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// initCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// initCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+  initCmd.Flags().BoolVarP(&useTemplate, "template", "t", false, "Init workspace from default config template")
 }
