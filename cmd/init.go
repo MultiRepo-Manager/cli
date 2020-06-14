@@ -17,8 +17,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package cmd
 
 import (
+	"errors"
 	"fmt"
-  "errors"
 
 	"github.com/spf13/cobra"
 )
@@ -29,10 +29,10 @@ var initCmd = &cobra.Command{
 	Use:   "init [url]",
 	Short: "Init a workspace",
 	Args: func(cmd *cobra.Command, args []string) error {
-		if len(args) < 1 && !useTemplate{
+		if len(args) < 1 && !useTemplate {
 			return errors.New("requires a git repo or set the --template flag to start from scratch")
 		}
-    return nil
+		return nil
 	},
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("init called")
@@ -41,5 +41,5 @@ var initCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(initCmd)
-  initCmd.Flags().BoolVarP(&useTemplate, "template", "t", false, "Init workspace from default config template")
+	initCmd.Flags().BoolVarP(&useTemplate, "template", "t", false, "Init workspace from default config template")
 }

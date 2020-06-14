@@ -20,8 +20,8 @@ import (
 	"github.com/spf13/cobra"
 	"os"
 
-	"github.com/spf13/viper"
 	"fmt"
+	"github.com/spf13/viper"
 )
 
 var cfgFile string
