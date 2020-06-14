@@ -19,7 +19,10 @@ package cmd
 import (
 	"errors"
 	"fmt"
+	"os"
 
+	"github.com/arrase/multi-repo-workspace/cli/filehelper"
+	"github.com/arrase/multi-repo-workspace/cli/static"
 	"github.com/spf13/cobra"
 )
 
@@ -35,7 +38,11 @@ var initCmd = &cobra.Command{
 		return nil
 	},
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("init called")
+		if useTemplate {
+			filehelper.CreateIfNotExists(".workspace", os.ModePerm)
+			static.Copy("/templates/config.yaml", ".workspace/config.yaml")
+		}
+		fmt.Println("Done.")
 	},
 }
 

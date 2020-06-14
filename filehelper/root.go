@@ -14,33 +14,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-package helpers
+package filehelper
 
 import (
 	"fmt"
-	homedir "github.com/mitchellh/go-homedir"
 	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"syscall"
 )
-
-func GetConfigDir() string {
-	home, err := homedir.Dir()
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-
-	conf_dir := filepath.Join(home, ".standardize")
-
-	if _, err := os.Stat(conf_dir); os.IsNotExist(err) {
-		os.Mkdir(conf_dir, os.ModePerm)
-	}
-
-	return conf_dir
-}
 
 func CopyDirectory(scrDir, dest string) error {
 	entries, err := ioutil.ReadDir(scrDir)
