@@ -6,6 +6,7 @@ import (
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/gorilla/websocket"
+  "github.com/markbates/pkger"
 	"github.com/spf13/viper"
 )
 
@@ -29,7 +30,7 @@ func (ws *WSServer) Run() {
 		},
 	}
 
-	http.Handle("/", http.FileServer(http.Dir("./static")))
+	http.Handle("/", http.FileServer(pkger.Dir("/public")))
 	http.HandleFunc("/ws", ws.serve)
 	log.Fatal(http.ListenAndServe("0.0.0.0:8080", nil))
 }

@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Clean previous
-rm -f workspace-*
+rm -f workspace-* public
+
+# cp -r ../ui/dist public
+# pkger -include /templates -include /public -o static
 
 # Build
 env GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -v -o workspace-linux-amd64 .

@@ -20,6 +20,7 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
+  "github.com/arrase/multi-repo-workspace/cli/server"
 )
 
 // uiCmd represents the ui command
@@ -28,6 +29,8 @@ var uiCmd = &cobra.Command{
 	Short: "A brief description of your command",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("ui called")
+    server := server.WSServer{}
+    server.Run()
 	},
 }
 
