@@ -3,8 +3,10 @@
 # Clean previous
 rm -rf workspace-* public
 
-cp -r ../ui/dist public
-pkger -include /public -o static
+if [[ "$1" == "pkger" ]]
+  cp -r ../ui/dist public
+  pkger -include /public -o static
+fi
 
 # Build
 env GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -v -o workspace-linux-amd64 .
