@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Clean previous
-rm -f workspace-* public
+rm -rf workspace-* public
 
 # cp -r ../ui/dist public
 # pkger -include /templates -include /public -o static
