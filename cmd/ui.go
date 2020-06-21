@@ -20,15 +20,20 @@ import (
 	"github.com/arrase/multi-repo-workspace/cli/openurl"
 	"github.com/arrase/multi-repo-workspace/cli/server"
 	"github.com/spf13/cobra"
+	"time"
 )
 
-// uiCmd represents the ui command
+func openBrowser() {
+	time.Sleep(500 * time.Millisecond)
+	openurl.OpenBrowser("http://localhost:8080")
+}
+
 var uiCmd = &cobra.Command{
 	Use:   "ui",
-	Short: "A brief description of your command",
+	Short: "Open Web UI",
 	Run: func(cmd *cobra.Command, args []string) {
 		server := server.WSServer{}
-		openurl.OpenBrowser("http://localhost:8080")
+		go openBrowser()
 		server.Run()
 	},
 }
