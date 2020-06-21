@@ -17,17 +17,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package cmd
 
 import (
-	"fmt"
-
+	"errors"
+	"github.com/arrase/multi-repo-workspace/cli/actions"
 	"github.com/spf13/cobra"
 )
 
-// addCmd represents the add command
 var addCmd = &cobra.Command{
-	Use:   "add",
-	Short: "A brief description of your command",
+	Use:   "add <name> <url> <branch>",
+	Short: "Add new repo",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("add called")
+		actions.AddRepo(args[0], args[1], args[2])
+	},
+	Args: func(cmd *cobra.Command, args []string) error {
+		if len(args) < 3 {
+			return errors.New("Undefined params")
+		}
+		return nil
 	},
 }
 
