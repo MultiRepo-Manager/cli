@@ -21,6 +21,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"os/exec"
 
 	"github.com/arrase/multi-repo-workspace/cli/filehelper"
 	"github.com/spf13/cobra"
@@ -52,6 +53,8 @@ var initCmd = &cobra.Command{
 			filehelper.CreateIfNotExists(".workspace", os.ModePerm)
 			viper.ReadConfig(bytes.NewBuffer(cfgTemplate))
 			viper.WriteConfigAs(".workspace/config.yaml")
+		} else {
+			exec.Command("git", "clone", args[0], ".workspace").Start()
 		}
 		fmt.Println("Done.")
 	},
