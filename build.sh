@@ -3,7 +3,7 @@
 # Clean previous
 rm -rf workspace-* public
 
-if [[ "$1" == "pkger" ]]
+if [[ "$1" == "pkger" ]]; then
   cp -r ../ui/dist public
   pkger -include /public -o static
 fi
