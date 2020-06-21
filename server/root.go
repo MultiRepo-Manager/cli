@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/websocket"
 	"github.com/markbates/pkger"
 	"github.com/spf13/viper"
+//  "github.com/arrase/multi-repo-workspace/cli/actions"
 )
 
 type Message struct {
@@ -29,6 +30,9 @@ func (ws *WSServer) Run() {
 			return true
 		},
 	}
+
+  viper.WatchConfig()
+  viper.OnConfigChange(ws.ConfigCallback)
 
 	http.Handle("/", http.FileServer(pkger.Dir("/public")))
 	http.HandleFunc("/ws", ws.serve)
