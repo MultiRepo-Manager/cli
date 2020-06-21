@@ -34,7 +34,7 @@ name: "Default Workspace"
 port: 8080
 pull: git
 repos:
-  - path: "example"
+  example:
     git: "git@github.com:example/example.git"
     branch: "develop"
 `)
