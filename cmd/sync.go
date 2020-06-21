@@ -17,17 +17,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package cmd
 
 import (
-	"fmt"
-
+	"github.com/arrase/multi-repo-workspace/cli/actions"
 	"github.com/spf13/cobra"
 )
 
 // syncCmd represents the sync command
 var syncCmd = &cobra.Command{
 	Use:   "sync",
-	Short: "A brief description of your command",
+	Short: "Sync all repos",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("sync called")
+		actions.SyncAll()
 	},
 }
 

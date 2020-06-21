@@ -73,6 +73,10 @@ func (ws *WSServer) serve(w http.ResponseWriter, r *http.Request) {
 				m.Payload["git"].(string),
 				m.Payload["branch"].(string),
 			)
+			r.Topic = "git-added"
+		case "git-sync-all":
+			actions.SyncAll()
+			r.Topic = "all-git-synced"
 		default:
 			r.Topic = "error"
 		}
