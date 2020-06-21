@@ -5,7 +5,7 @@ rm -rf workspace-* public
 
 if [[ "$1" == "pkger" ]]; then
   cp -r ../ui/dist public
-  pkger -include /public -o static
+  pkger -include /public -o server
 fi
 
 # Build
