@@ -4,11 +4,11 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/arrase/multi-repo-workspace/cli/actions"
 	"github.com/fsnotify/fsnotify"
 	"github.com/gorilla/websocket"
 	"github.com/markbates/pkger"
 	"github.com/spf13/viper"
-//  "github.com/arrase/multi-repo-workspace/cli/actions"
 )
 
 type Message struct {
@@ -31,8 +31,8 @@ func (ws *WSServer) Run() {
 		},
 	}
 
-  viper.WatchConfig()
-  viper.OnConfigChange(ws.ConfigCallback)
+	viper.WatchConfig()
+	viper.OnConfigChange(ws.ConfigCallback)
 
 	http.Handle("/", http.FileServer(pkger.Dir("/public")))
 	http.HandleFunc("/ws", ws.serve)
@@ -67,6 +67,12 @@ func (ws *WSServer) serve(w http.ResponseWriter, r *http.Request) {
 		case "config-get":
 			r.Topic = "config-set"
 			r.Payload = viper.AllSettings()
+		case "git-add":
+			actions.AddRepo(
+				m.Payload["name"].(string),
+				m.Payload["git"].(string),
+				m.Payload["branch"].(string),
+			)
 		default:
 			r.Topic = "error"
 		}
