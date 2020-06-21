@@ -20,6 +20,11 @@ func SyncAll() {
 			git := v.(map[string]interface{})["git"]
 			log.Println("clone:", k, "git:", git)
 			exec.Command("git", "clone", git.(string), k).Start()
+		} else {
+			cmd := exec.Command("git", "pull")
+			cmd.Dir = k
+			cmd.Start()
+			log.Println("sync:", k)
 		}
 	}
 }
