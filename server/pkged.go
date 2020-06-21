@@ -2,7 +2,7 @@
 
 // +build !skippkger
 
-package static
+package server
 
 import (
 	"github.com/markbates/pkger"
