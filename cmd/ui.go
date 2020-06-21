@@ -17,10 +17,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package cmd
 
 import (
-	"fmt"
-
+	"github.com/arrase/multi-repo-workspace/cli/openurl"
+	"github.com/arrase/multi-repo-workspace/cli/server"
 	"github.com/spf13/cobra"
-  "github.com/arrase/multi-repo-workspace/cli/server"
 )
 
 // uiCmd represents the ui command
@@ -28,9 +27,9 @@ var uiCmd = &cobra.Command{
 	Use:   "ui",
 	Short: "A brief description of your command",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("ui called")
-    server := server.WSServer{}
-    server.Run()
+		server := server.WSServer{}
+		openurl.OpenBrowser("http://localhost:8080")
+		server.Run()
 	},
 }
 

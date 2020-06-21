@@ -1,12 +1,13 @@
 package openurl
 
 import (
+	"fmt"
 	"log"
 	"os/exec"
 	"runtime"
 )
 
-func openbrowser(url string) {
+func OpenBrowser(url string) {
 	var err error
 
 	switch runtime.GOOS {
@@ -17,7 +18,7 @@ func openbrowser(url string) {
 	case "darwin":
 		err = exec.Command("open", url).Start()
 	default:
-		err = log.Errorf("unsupported platform")
+		err = fmt.Errorf("unsupported platform")
 	}
 	if err != nil {
 		log.Fatal(err)
