@@ -20,13 +20,23 @@ import (
 	"errors"
 	"fmt"
 	"os"
+  "bytes"
 
 	"github.com/arrase/multi-repo-workspace/cli/filehelper"
-	"github.com/arrase/multi-repo-workspace/cli/static"
 	"github.com/spf13/cobra"
+  "github.com/spf13/viper"
 )
 
 var useTemplate bool
+var cfgTemplate = []byte(`
+name: "Default Workspace"
+port: 8080
+pull: git
+repos:
+  - path: "example"
+    git: "git@github.com:example/example.git"
+    branch: "develop"
+`)
 
 var initCmd = &cobra.Command{
 	Use:   "init [url]",
@@ -40,7 +50,8 @@ var initCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		if useTemplate {
 			filehelper.CreateIfNotExists(".workspace", os.ModePerm)
-			static.Copy("/templates/config.yaml", ".workspace/config.yaml")
+      viper.ReadConfig(bytes.NewBuffer(cfgTemplate))
+      viper.WriteConfigAs(".workspace/config.yaml")
 		}
 		fmt.Println("Done.")
 	},
