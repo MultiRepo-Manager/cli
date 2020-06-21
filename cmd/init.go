@@ -17,14 +17,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package cmd
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"os"
-  "bytes"
 
 	"github.com/arrase/multi-repo-workspace/cli/filehelper"
 	"github.com/spf13/cobra"
-  "github.com/spf13/viper"
+	"github.com/spf13/viper"
 )
 
 var useTemplate bool
@@ -50,8 +50,8 @@ var initCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		if useTemplate {
 			filehelper.CreateIfNotExists(".workspace", os.ModePerm)
-      viper.ReadConfig(bytes.NewBuffer(cfgTemplate))
-      viper.WriteConfigAs(".workspace/config.yaml")
+			viper.ReadConfig(bytes.NewBuffer(cfgTemplate))
+			viper.WriteConfigAs(".workspace/config.yaml")
 		}
 		fmt.Println("Done.")
 	},

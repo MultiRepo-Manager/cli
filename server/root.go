@@ -6,7 +6,7 @@ import (
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/gorilla/websocket"
-  "github.com/markbates/pkger"
+	"github.com/markbates/pkger"
 	"github.com/spf13/viper"
 )
 
