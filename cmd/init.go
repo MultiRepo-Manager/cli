@@ -55,7 +55,7 @@ var initCmd = &cobra.Command{
 			viper.ReadConfig(bytes.NewBuffer(cfgTemplate))
 			viper.WriteConfigAs(".workspace/config.yaml")
 		} else {
-			exec.Command("git", "clone", args[0], ".workspace").Start()
+			exec.Command("git", "clone", args[0], ".workspace").Run()
 			actions.SyncAll()
 		}
 		fmt.Println("Done.")
