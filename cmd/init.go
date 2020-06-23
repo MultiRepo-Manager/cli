@@ -32,12 +32,9 @@ import (
 var useTemplate bool
 var cfgTemplate = []byte(`
 name: "Default Workspace"
-port: 8080
-pull: git
 repos:
   example:
     git: "git@github.com:example/example.git"
-    branch: "develop"
 `)
 
 var initCmd = &cobra.Command{
