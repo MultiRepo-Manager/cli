@@ -74,6 +74,9 @@ func (ws *WSServer) serve(w http.ResponseWriter, r *http.Request) {
 				m.Payload["branch"].(string),
 			)
 			r.Topic = "git-added"
+		case "git-del":
+			actions.DelRepo(m.Payload["name"].(string))
+			r.Topic = "git-deleted"
 		case "git-sync-all":
 			actions.SyncAll()
 			r.Topic = "all-git-synced"
