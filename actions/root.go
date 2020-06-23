@@ -5,6 +5,7 @@ import (
 	"github.com/spf13/viper"
 	"log"
 	"os/exec"
+  "fmt"
 )
 
 func AddRepo(name, url, branch string) {
@@ -27,5 +28,13 @@ func SyncAll() {
 			cmd.Start()
 			log.Println("sync:", k)
 		}
+	}
+}
+
+func RepoList() {
+	rps := viper.GetStringMap("repos")
+	for k, v := range rps {
+			git := v.(map[string]interface{})["git"]
+			fmt.Println( k, ":", git)
 	}
 }

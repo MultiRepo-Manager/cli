@@ -23,8 +23,8 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/arrase/multi-repo-workspace/cli/filehelper"
 	"github.com/arrase/multi-repo-workspace/cli/actions"
+	"github.com/arrase/multi-repo-workspace/cli/filehelper"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
