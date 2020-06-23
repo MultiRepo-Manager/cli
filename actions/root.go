@@ -11,6 +11,7 @@ func AddRepo(name, url, branch string) {
 	viper.Set("repos."+name+".git", url)
 	viper.Set("repos."+name+".branch", branch)
 	viper.WriteConfig()
+	exec.Command("git", "clone", url, name).Start()
 }
 
 func SyncAll() {
