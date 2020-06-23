@@ -24,6 +24,7 @@ import (
 	"os/exec"
 
 	"github.com/arrase/multi-repo-workspace/cli/filehelper"
+	"github.com/arrase/multi-repo-workspace/cli/actions"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -55,6 +56,7 @@ var initCmd = &cobra.Command{
 			viper.WriteConfigAs(".workspace/config.yaml")
 		} else {
 			exec.Command("git", "clone", args[0], ".workspace").Start()
+			actions.SyncAll()
 		}
 		fmt.Println("Done.")
 	},
