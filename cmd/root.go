@@ -27,8 +27,8 @@ import (
 var cfgFile string
 
 var rootCmd = &cobra.Command{
-	Use:   "workspace",
-	Short: "A brief description of your application",
+	Use:   "workspace <command>",
+  Short: "Read the docs at: https://multirepo-workspace.github.io/",
 }
 
 func Execute() {
