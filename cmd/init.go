@@ -35,6 +35,7 @@ name: "Default Workspace"
 repos:
   example:
     git: "git@github.com:example/example.git"
+    branch: "develop"
 `)
 
 var initCmd = &cobra.Command{
