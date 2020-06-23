@@ -1,11 +1,12 @@
 package actions
 
 import (
+	"fmt"
 	"github.com/arrase/multi-repo-workspace/cli/filehelper"
 	"github.com/spf13/viper"
 	"log"
+	"os"
 	"os/exec"
-  "fmt"
 )
 
 func AddRepo(name, url, branch string) {
@@ -34,7 +35,15 @@ func SyncAll() {
 func RepoList() {
 	rps := viper.GetStringMap("repos")
 	for k, v := range rps {
-			git := v.(map[string]interface{})["git"]
-			fmt.Println( k, ":", git)
+		git := v.(map[string]interface{})["git"]
+		fmt.Println(k, ":", git)
+	}
+}
+
+func DelRepo(name string) {
+	delete(viper.Get("repos").(map[string]interface{}), name)
+	viper.WriteConfig()
+	if filehelper.Exists(name) {
+		os.RemoveAll(name)
 	}
 }
