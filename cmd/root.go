@@ -28,7 +28,7 @@ var cfgFile string
 
 var rootCmd = &cobra.Command{
 	Use:   "workspace <command>",
-  Short: "Read the docs at: https://multirepo-workspace.github.io/",
+	Short: "Read the docs at: https://multirepo-workspace.github.io/",
 }
 
 func Execute() {
