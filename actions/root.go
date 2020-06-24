@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"strings"
 )
 
 func AddRepo(name, url, branch string) {
@@ -45,5 +46,20 @@ func DelRepo(name string) {
 	viper.WriteConfig()
 	if filehelper.Exists(name) {
 		os.RemoveAll(name)
+	}
+}
+
+func BuildRepo(name string) {
+	if filehelper.Exists(name) {
+		cmds := viper.GetStringSlice("repos." + name + ".build")
+		for _, c := range cmds {
+			x := strings.SplitAfterN(c, " ", 2)
+			cmd := exec.Command(x[0])
+			cmd.Dir = name
+			if len(x) == 1 {
+				cmd.Args = strings.Split(x[1], " ")
+			}
+      cmd.Run()
+		}
 	}
 }
