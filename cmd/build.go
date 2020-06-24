@@ -18,7 +18,6 @@ package cmd
 
 import (
 	"errors"
-	"fmt"
 
 	"github.com/arrase/multi-repo-workspace/cli/actions"
 	"github.com/spf13/cobra"
@@ -35,7 +34,6 @@ var buildCmd = &cobra.Command{
 	},
 	Run: func(cmd *cobra.Command, args []string) {
 		actions.BuildRepo(args[0])
-		fmt.Println("build called")
 	},
 }
 
