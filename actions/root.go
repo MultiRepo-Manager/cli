@@ -56,7 +56,7 @@ func BuildRepo(name string) {
 			x := strings.SplitAfterN(c, " ", 2)
 			cmd := exec.Command(x[0])
 			cmd.Dir = name
-			if len(x) == 1 {
+			if len(x) == 2 {
 				cmd.Args = strings.Split(x[1], " ")
 			}
       cmd.Run()
