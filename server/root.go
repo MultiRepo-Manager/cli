@@ -77,6 +77,9 @@ func (ws *WSServer) serve(w http.ResponseWriter, r *http.Request) {
 		case "git-del":
 			actions.DelRepo(m.Payload["name"].(string))
 			r.Topic = "git-deleted"
+		case "git-build":
+			actions.BuildRepo(m.Payload["name"].(string))
+			r.Topic = "git-builded"
 		case "git-sync-all":
 			actions.SyncAll()
 			r.Topic = "all-git-synced"

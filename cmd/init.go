@@ -36,6 +36,8 @@ repos:
   example:
     git: "git@github.com:example/example.git"
     branch: "develop"
+    build:
+     - npm run build
 `)
 
 var initCmd = &cobra.Command{
