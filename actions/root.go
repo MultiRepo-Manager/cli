@@ -53,13 +53,13 @@ func BuildRepo(name string) {
 	if filehelper.Exists(name) {
 		cmds := viper.GetStringSlice("repos." + name + ".build")
 		for _, c := range cmds {
-			x := strings.SplitAfterN(c, " ", 2)
+			x := strings.Fields(c)
 			cmd := exec.Command(x[0])
 			cmd.Dir = name
-			if len(x) == 2 {
-				cmd.Args = strings.Split(x[1], " ")
+			if len(x) > 1 {
+				cmd.Args = x[0:len(x)]
 			}
-      cmd.Run()
+			cmd.Run()
 		}
 	}
 }
