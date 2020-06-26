@@ -14,7 +14,7 @@ func AddRepo(name, url, branch string) {
 	viper.Set("repos."+name+".git", url)
 	viper.Set("repos."+name+".branch", branch)
 	viper.WriteConfig()
-	exec.Command("git", "clone", url, name).Start()
+	exec.Command("git", "clone", url, name).Run()
 }
 
 func SyncAll() {
@@ -23,11 +23,11 @@ func SyncAll() {
 		if !filehelper.Exists(k) {
 			git := v.(map[string]interface{})["git"]
 			log.Println("clone:", k, "git:", git)
-			exec.Command("git", "clone", git.(string), k).Start()
+			exec.Command("git", "clone", git.(string), k).Run()
 		} else {
 			cmd := exec.Command("git", "pull")
 			cmd.Dir = k
-			cmd.Start()
+			cmd.Run()
 			log.Println("sync:", k)
 		}
 	}
